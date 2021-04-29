@@ -25,23 +25,23 @@ class MainViewModelTest : TestCase() {
         mainViewModel = MainViewModel(cuboidModel)
     }
 
-//    @Test
-//    fun testVolume() {
-//        cuboidModel = CuboidModel()
-//        mainViewModel = MainViewModel(cuboidModel)
-//        mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
-//        val volume = mainViewModel.getVolume()
-//        assertEquals(dummyVolume, volume, 0.0001)
-//    }
+    @Test
+    fun testVolume() {
+        cuboidModel = CuboidModel()
+        mainViewModel = MainViewModel(cuboidModel)
+        mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
+        val volume = mainViewModel.getVolume()
+        assertEquals(dummyVolume, volume, 0.0001)
+    }
 
-//    @Test
-//    fun testCircumference() {
-//        cuboidModel = CuboidModel()
-//        mainViewModel = MainViewModel(cuboidModel)
-//        mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
-//        val volume = mainViewModel.getCircumference()
-//        assertEquals(dummyCircumference, volume, 0.0001)
-//    }
+    @Test
+    fun testCircumference() {
+        cuboidModel = CuboidModel()
+        mainViewModel = MainViewModel(cuboidModel)
+        mainViewModel.save(dummyWidth, dummyLength, dummyHeight)
+        val volume = mainViewModel.getCircumference()
+        assertEquals(dummyCircumference, volume, 0.0001)
+    }
 
     @Test
     fun testSurfaceArea() {
