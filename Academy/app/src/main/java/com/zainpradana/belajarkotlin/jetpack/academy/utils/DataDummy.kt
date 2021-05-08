@@ -1,6 +1,7 @@
 package com.zainpradana.belajarkotlin.jetpack.academy.utils
 
 import com.zainpradana.belajarkotlin.jetpack.academy.data.CourseEntity
+import com.zainpradana.belajarkotlin.jetpack.academy.data.ModuleEntity
 
 object DataDummy {
 
@@ -38,5 +39,46 @@ object DataDummy {
             "https://www.dicoding.com/images/small/academy/belajar_membuat_aplikasi_android_untuk_pemula_logo_070119140911.jpg"))
 
         return courses
+    }
+
+    fun generateDummyModules(courseId: String): List<ModuleEntity> {
+
+        val modules = ArrayList<ModuleEntity>()
+
+        modules.add(ModuleEntity(
+            "{$courseId}m1",
+            courseId,
+            "Modul 0 : Introduction",
+            0, false))
+        modules.add(
+            ModuleEntity("{$courseId}m2",
+            courseId,
+            "Modul 1 : Teori 1",
+            1, false)
+        )
+        modules.add(ModuleEntity("{$courseId}m3",
+            courseId,
+            "Latihan 1",
+            2, false))
+        modules.add(ModuleEntity("{$courseId}m4",
+            courseId,
+            "Bedah Kode 1",
+            3, false))
+        modules.add(ModuleEntity("{$courseId}m5",
+            courseId,
+            "Modul 2 : Teori 2",
+            4, false))
+
+        modules.add(ModuleEntity("{$courseId}m6",
+            courseId,
+            "Latihan 2",
+            5, false))
+
+        modules.add(ModuleEntity("{$courseId}m7",
+            courseId,
+            "Bedah Kode 2",
+            6, false))
+
+        return modules
     }
 }
