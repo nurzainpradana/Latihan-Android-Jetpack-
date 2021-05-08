@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.zainpradana.belajarkotlin.jetpack.academy.data.CourseEntity
 import com.zainpradana.belajarkotlin.jetpack.academy.databinding.ActivityDetailCourseBinding
 import com.zainpradana.belajarkotlin.jetpack.academy.databinding.ContentDetailCourseBinding
 import com.zainpradana.belajarkotlin.jetpack.academy.detail.adapter.DetailCourseAdapter
+import com.zainpradana.belajarkotlin.jetpack.academy.detail.viewmodel.DetailCouseViewModel
 import com.zainpradana.belajarkotlin.jetpack.academy.reader.CourseReaderActivity
 import com.zainpradana.belajarkotlin.jetpack.academy.utils.DataDummy
 
@@ -28,6 +30,8 @@ class DetailCourseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCouseViewModel::class.java]
 
         val activityDetailCourseBinding = ActivityDetailCourseBinding.inflate(layoutInflater)
         detailContentBinding = activityDetailCourseBinding.detailContent
@@ -43,13 +47,17 @@ class DetailCourseActivity : AppCompatActivity() {
         if (extras != null) {
             val courseId = extras.getString(EXTRA_COURSE)
             if (courseId != null) {
-                val modules = DataDummy.generateDummyModules(courseId)
+//                val modules = DataDummy.generateDummyModules(courseId)
+//                adapter.setModules(modules)
+//                for (course in DataDummy.generatedDummyCourses()) {
+//                    if (course.courseId == courseId) {
+//                        populateCourse(course)
+//                    }
+//                }
+                viewModel.setSelectedCourse(courseId)
+                val modules = viewModel.getModules()
                 adapter.setModules(modules)
-                for (course in DataDummy.generatedDummyCourses()) {
-                    if (course.courseId == courseId) {
-                        populateCourse(course)
-                    }
-                }
+                populateCourse(viewModel.getCourse() as CourseEntity)
             }
         }
 

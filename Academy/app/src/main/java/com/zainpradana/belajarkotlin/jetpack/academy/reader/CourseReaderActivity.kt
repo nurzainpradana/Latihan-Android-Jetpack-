@@ -2,9 +2,11 @@ package com.zainpradana.belajarkotlin.jetpack.academy.reader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.zainpradana.belajarkotlin.jetpack.academy.R
 import com.zainpradana.belajarkotlin.jetpack.academy.reader.content.ModuleContentFragment
 import com.zainpradana.belajarkotlin.jetpack.academy.reader.list.ModuleListFragment
+import com.zainpradana.belajarkotlin.jetpack.academy.reader.viewmodel.CourseReaderViewModel
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
     companion object {
@@ -14,10 +16,13 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_reader)
 
+        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+
         val bundle = intent.extras
         if (bundle != null) {
             val courseId = bundle.getString(EXTRA_COURSE_ID)
             if (courseId != null) {
+                viewModel.setSelectedCourse(courseId)
                 populateFragment()
             }
         }
